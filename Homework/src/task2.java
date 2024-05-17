@@ -1,5 +1,5 @@
 public class task2 {
-    public void checkSumSign(){
+    public static void checkSumSign(){
         int a = 10;
         int b = -5;
         int sum = a + b;

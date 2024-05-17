@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        task1 method = new task1();
-        task1.printThreeWords();
+        task3 method = new task3();
+        task3.printColor();
         //System.out.println(task9.year(2023));
 
         /*int len = 3;

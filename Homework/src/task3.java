@@ -1,6 +1,6 @@
 public class task3 {
-    public void printColor(){
-        int value = 15;
+    public static void printColor(){
+        int value = 1100;
 
         if (value <= 0){
             System.out.println("Красный");
