@@ -1,63 +1,45 @@
 public class Main {
-    public static void main(String[] args) {
-
-        Bowl bowl = new Bowl(50);
-
-        Cat[] cats = {new Cat("Чернушка"), new Cat("Буся"), new Cat("Василий")};
-
-        for (Cat cat : cats){
-            cat.eat(bowl, 20);
+    public static int sumArr(String[][] array) throws ArraySizeException, ArrayDataException {
+        if (array.length != 4){
+            throw new ArraySizeException("Не правильный размер массива. Ожидается массив размером 4x4");
         }
 
-        for (Cat cat : cats){
-            System.out.println(cat.name + " сыт: " + cat.isSatiety());
-        }
-
-        bowl.addFood(30);
-
-        for (Cat cat : cats){
-            if (!cat.isSatiety()){
-                cat.eat(bowl, 20);
+        for (String[] row : array) {
+            if (row.length != 4){
+                throw new ArraySizeException("Не правильный размер массива. Ожидается массив размером 4x4");
             }
         }
 
-        for (Cat cat : cats){
-            System.out.println(cat.name + " сыт: " + cat.isSatiety());
+        int sum = 0;
+
+        for (int i = 0; i < array.length; i++){
+            for (int j = 0; j < array[i].length; j++){
+                try {
+                    sum += Integer.parseInt(array[i][j]);
+                } catch (NumberFormatException e) {
+                    throw new ArrayDataException("Не правильные данные в ячейке [" + i + "][" + j + "]: " + array[i][j]);
+                }
+            }
         }
 
-        Dog dogSharik = new Dog("Шарик");
-        dogSharik.run(200);
-        dogSharik.swim(5);
-
-        Cat catBeluga = new Cat("Белуга");
-        catBeluga.run(150);
-        catBeluga.swim(5);
-
-
-        System.out.println("Всего животных: " + Animal.getAnimalCount());
-        System.out.println("Всего собак: " + Dog.getDogCount());
-        System.out.println("Всего котов: " + Cat.getCatCount());
-
-
-
-        Shape circle = new Circle(5, "red", "black");
-        Shape rectangle = new Rectangle(2, 3, "red", "black;");
-        Shape triangle = new Triangle(1, 2, 3, "red", "black");
-
-        printShapeInfo(circle);
-        printShapeInfo(rectangle);
-        printShapeInfo(triangle);
-
+        return sum;
     }
 
-    public static void printShapeInfo(Shape shape){
-        if (shape instanceof Color){
-            Color color = (Color) shape;
-            System.out.println("Периметр: " + shape.getPerimeter());
-            System.out.println("Площадь: " + shape.getArea());
-            System.out.println("Цвет заливки: " + color.getFillColor());
-            System.out.println("Цвет границы: " + color.getBorderColor());
-            System.out.println();
+    public static void main(String[] args){
+        String[][] array = {
+                {"1","2","3","4"},
+                {"5","6","7","8"},
+                {"9","10","11","12"},
+                {"13","14","jkhkjhk","16"},
+        };
+
+        try {
+            int result = sumArr(array);
+            System.out.println("Сумма элементов массива: " + result);
+        } catch (ArraySizeException e) {
+            System.out.println("Ошибка размера массива: " + e.getMessage());
+        } catch (ArrayDataException e){
+            System.out.println("Ошибка данных в массиве: " + e.getMessage());
         }
     }
 }
