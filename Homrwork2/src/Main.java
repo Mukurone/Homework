@@ -3,6 +3,9 @@ public class Main {
         //WordArray.wordArray();
 
         PhoneDirectory directory = new PhoneDirectory();
-        directory.get("Gun");
+        directory.add("Пронин", "893028372893");
+        directory.add("Пронин", "89283931927389");
+
+        directory.get("Пронин");
     }
 }
